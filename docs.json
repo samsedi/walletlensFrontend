@@ -16,22 +16,29 @@
       "method": "apiKey"
     }
   },
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "docs/introduction",
-        "docs/authentication"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "docs/api-reference/endpoint/wallet-details",
-        "docs/api-reference/endpoint/transactions",
-        "docs/api-reference/endpoint/ens-resolve",
-        "docs/api-reference/endpoint/ai-chat"
-      ]
-    }
-  ]
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "API",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "docs/introduction",
+              "docs/authentication"
+            ]
+          },
+          {
+            "group": "API Reference",
+            "pages": [
+              "docs/api-reference/endpoint/wallet-details",
+              "docs/api-reference/endpoint/transactions",
+              "docs/api-reference/endpoint/ens-resolve",
+              "docs/api-reference/endpoint/ai-chat"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
