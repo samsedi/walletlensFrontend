@@ -1,0 +1,19 @@
+---
+title: 'Wallet Details'
+api: 'GET /api/wallet/details'
+description: 'Retrieves a comprehensive risk assessment for a specific wallet address, including age, total transactions, funding sources, and flagged risk signals.'
+---
+
+## Query Parameters
+
+<ParamField query="address" type="string" required>
+  The wallet address or ENS domain to analyze (e.g., `vitalik.eth`).
+</ParamField>
+
+<ParamField query="chain" type="string" default="eth">
+  The blockchain network.
+</ParamField>
+
+<ParamField query="refresh" type="boolean" default="false">
+  Forces a cache bypass to fetch live on-chain data.
+</ParamField>

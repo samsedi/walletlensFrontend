@@ -1,0 +1,15 @@
+---
+title: 'AI Inference'
+api: 'POST /api/ai/chat'
+description: 'Creates an AI inference stream using Gemini, grounded in the context of the requested wallet''s risk profile.'
+---
+
+## Body Parameters
+
+<ParamField body="walletAddress" type="string" required>
+  The target wallet address for context.
+</ParamField>
+
+<ParamField body="message" type="string" required>
+  The natural language query or prompt.
+</ParamField>

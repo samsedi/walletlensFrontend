@@ -1,0 +1,19 @@
+---
+title: 'Transactions'
+api: 'GET /api/wallet/transactions'
+description: 'Retrieves a timeline of transaction counts for charting and historical activity tracking.'
+---
+
+## Query Parameters
+
+<ParamField query="address" type="string" required>
+  The wallet address or ENS domain to analyze.
+</ParamField>
+
+<ParamField query="timeframe" type="string" default="W">
+  Grouping period: `D` (Days), `W` (Weeks), `M` (Months).
+</ParamField>
+
+<ParamField query="year" type="number">
+  Filter transactions by a specific year.
+</ParamField>

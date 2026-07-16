@@ -1,0 +1,37 @@
+{
+  "name": "WalletLens",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "theme": "emerald",
+  "colors": {
+    "primary": "#10b981",
+    "light": "#34d399",
+    "dark": "#059669"
+  },
+  "api": {
+    "baseUrl": "http://localhost:8084",
+    "auth": {
+      "method": "apiKey"
+    }
+  },
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "authentication"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/endpoint/wallet-details",
+        "api-reference/endpoint/transactions",
+        "api-reference/endpoint/ens-resolve",
+        "api-reference/endpoint/ai-chat"
+      ]
+    }
+  ]
+}

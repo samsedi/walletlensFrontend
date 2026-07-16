@@ -1,0 +1,17 @@
+---
+title: Authentication
+description: 'How to authenticate requests to the WalletLens API'
+---
+
+The Wallet Risk API uses API keys to authenticate requests. You can view and manage your API keys in the Settings dashboard.
+
+<Warning>
+  Your API keys carry many privileges. Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.
+</Warning>
+
+Authentication to the API is performed via the `x-api-key` HTTP header. Provide your API key in all requests. All API requests must be made over HTTPS.
+
+```bash
+curl "https://api.walletlens.com/api/wallet/details" \
+  -H "x-api-key: wr_your_api_key_here"
+```

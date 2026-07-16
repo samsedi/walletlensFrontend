@@ -1,0 +1,15 @@
+---
+title: 'Resolve ENS'
+api: 'GET /api/ens/resolve'
+description: 'Resolves an ENS domain to its underlying Ethereum address with rich social metadata.'
+---
+
+## Query Parameters
+
+<ParamField query="address" type="string" required>
+  The wallet address or ENS domain to resolve (e.g., `vitalik.eth`).
+</ParamField>
+
+<ParamField query="refresh" type="boolean" default="false">
+  Forces a cache bypass to fetch live ENS data.
+</ParamField>
