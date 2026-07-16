@@ -1,9 +1,5 @@
 {
   "name": "WalletLens",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
   "theme": "mint",
   "colors": {
     "primary": "#10b981",
