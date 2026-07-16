@@ -1,0 +1,46 @@
+---
+title: 'LLM Integration (llm.txt)'
+description: 'Context file for AI coding assistants like Cursor, GitHub Copilot, and Claude.'
+---
+
+If you are building an integration using an AI coding assistant, you can provide the following consolidated API specification to give your LLM full context on how to interact with WalletLens.
+
+```text
+# WalletLens API Specification
+
+## Authentication
+Base URL: https://api.domain.com
+All endpoints require the x-api-key header.
+
+## 1. Wallet Details
+Endpoint: GET /api/wallet/details
+Description: Retrieves a comprehensive risk assessment for a specific wallet address.
+Query Parameters:
+- address (string, required): Wallet address or ENS domain.
+- chain (string, optional, default: eth): Blockchain network.
+- refresh (boolean, optional, default: false): Bypass cache.
+Response: JSON object containing stats (walletAge, totalTxs, riskScore, riskLevel), recentInteractions, and signalFlags.
+
+## 2. Transactions
+Endpoint: GET /api/wallet/transactions
+Description: Retrieves a timeline of transaction counts.
+Query Parameters:
+- address (string, required): Wallet address or ENS domain.
+- timeframe (string, optional, default: W): Grouping period (D, W, M).
+Response: JSON array of objects with date and count.
+
+## 3. Resolve ENS
+Endpoint: GET /api/ens/resolve
+Description: Resolves an ENS domain to its underlying Ethereum address with social metadata.
+Query Parameters:
+- address (string, required): Wallet address or ENS domain.
+Response: JSON object containing address, ensName, and twitter.
+
+## 4. AI Inference
+Endpoint: POST /api/ai/chat
+Description: Creates an AI inference stream grounded in the context of the requested wallet's risk profile.
+Body Parameters (JSON):
+- walletAddress (string, required): Target wallet address.
+- message (string, required): Natural language query.
+Response: JSON object containing reply.
+```

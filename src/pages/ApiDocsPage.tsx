@@ -206,7 +206,7 @@ export function ApiDocsPage({ onBack }: { onBack: () => void }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['overview', 'authentication', 'wallet-details', 'transactions', 'ens', 'ai-chat'];
+      const sections = ['overview', 'authentication', 'wallet-details', 'transactions', 'ens', 'ai-chat', 'llm-docs'];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el && el.getBoundingClientRect().top < 200) {
@@ -239,7 +239,7 @@ export function ApiDocsPage({ onBack }: { onBack: () => void }) {
           </div>
           
           <nav className="space-y-1">
-            {['overview', 'authentication', 'wallet-details', 'transactions', 'ens', 'ai-chat'].map((id) => (
+            {['overview', 'authentication', 'wallet-details', 'transactions', 'ens', 'ai-chat', 'llm-docs'].map((id) => (
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
@@ -502,7 +502,76 @@ export function ApiDocsPage({ onBack }: { onBack: () => void }) {
           </div>
         </section>
 
+        {/* Section: LLM Docs */}
+        <section id="llm-docs" className="border-b border-gray-200 dark:border-gray-800/50">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-2">
+            <div className="p-8 lg:p-12 xl:pr-16 bg-white dark:bg-[#0a0a0a]">
+              <h2 className="text-3xl font-bold mb-4">LLM Documentation</h2>
+              <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
+                Building an integration with an AI coding assistant like Cursor, Claude, or GitHub Copilot? 
+                Copy our consolidated API spec below to give your LLM full context on how to integrate with WalletLens.
+              </p>
+            </div>
+            <div className="bg-gray-900 p-8 lg:p-12 xl:pl-16 flex flex-col h-full min-h-[400px]">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-400 text-sm font-medium">llm.txt</span>
+                <button 
+                  onClick={() => {
+                    navigator.clipboard.writeText(llmDocsContent);
+                    alert("Copied LLM docs to clipboard!");
+                  }}
+                  className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors text-sm font-medium"
+                >
+                  <Copy className="w-4 h-4" /> Copy Spec
+                </button>
+              </div>
+              <pre className="flex-1 bg-[#1e1e1e] p-4 rounded-xl border border-gray-800 text-sm font-mono text-gray-300 overflow-y-auto max-h-[400px] leading-relaxed">
+                <code>{llmDocsContent}</code>
+              </pre>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   );
 }
+
+const llmDocsContent = `# WalletLens API Specification
+
+## Authentication
+Base URL: \`https://api.domain.com\`
+All endpoints require the \`x-api-key\` header.
+
+## 1. Wallet Details
+Endpoint: \`GET /api/wallet/details\`
+Description: Retrieves a comprehensive risk assessment for a specific wallet address.
+Query Parameters:
+- \`address\` (string, required): Wallet address or ENS domain.
+- \`chain\` (string, optional, default: eth): Blockchain network.
+- \`refresh\` (boolean, optional, default: false): Bypass cache.
+Response: JSON object containing stats (walletAge, totalTxs, riskScore, riskLevel), recentInteractions, and signalFlags.
+
+## 2. Transactions
+Endpoint: \`GET /api/wallet/transactions\`
+Description: Retrieves a timeline of transaction counts.
+Query Parameters:
+- \`address\` (string, required): Wallet address or ENS domain.
+- \`timeframe\` (string, optional, default: W): Grouping period (D, W, M).
+Response: JSON array of objects with \`date\` and \`count\`.
+
+## 3. Resolve ENS
+Endpoint: \`GET /api/ens/resolve\`
+Description: Resolves an ENS domain to its underlying Ethereum address with social metadata.
+Query Parameters:
+- \`address\` (string, required): Wallet address or ENS domain.
+Response: JSON object containing \`address\`, \`ensName\`, and \`twitter\`.
+
+## 4. AI Inference
+Endpoint: \`POST /api/ai/chat\`
+Description: Creates an AI inference stream grounded in the context of the requested wallet's risk profile.
+Body Parameters (JSON):
+- \`walletAddress\` (string, required): Target wallet address.
+- \`message\` (string, required): Natural language query.
+Response: JSON object containing \`reply\`.
+`;
